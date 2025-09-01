@@ -1,0 +1,28 @@
+{
+  "name": "personal-college-maintain-app",
+  "version": "1.0.0",
+  "main": "/backend/server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "multer": "^2.0.2",
+    "mysql2": "^3.14.3",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "session": "^0.1.0",
+    "url": "^0.11.4"
+  }
+}

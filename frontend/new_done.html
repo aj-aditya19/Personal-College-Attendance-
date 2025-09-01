@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance Submitted</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: white;
+      background-image: radial-gradient(#ccc 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+    .container {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      width: 350px;
+    }
+    h2 {
+      color: #333;
+      margin-bottom: 15px;
+    }
+    p {
+      color: #555;
+      margin-bottom: 20px;
+    }
+    a {
+      display: inline-block;
+      padding: 12px 24px;
+      background: #4a90e2;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+    a:hover {
+      background: #357abd;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>✅ New User Verified!</h1>
+    <p>Redirecting to login page...</p>
+    <p><a href="/frontend/home.html" class="btn">Go Now</a></p>
+  </div>
+
+  <script>
+    setTimeout(() => {
+      window.location.href = "/frontend/home.html";
+    }, 5000);
+  </script>
+</body>
+</html>
