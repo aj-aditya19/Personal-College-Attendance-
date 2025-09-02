@@ -142,7 +142,7 @@ app.post("/verify_otp", (req, res) => {
 const subjects = {
   "ITSM-L": "sub_bcaIII_214_L",
   "CN-L": "sub_bcaIII_213_L",
-  IA : "sub_bcaIII_211",
+  "I.A" : "sub_bcaIII_211",
   CRT : "sub_bcaIII_217",
   DM : "sub_bcaIII_212",
   ITSM: "sub_bcaIII_214",
@@ -152,9 +152,9 @@ const subjects = {
 app.post("/show", (req, res) => {
   const { attendanceData, user, date_day } = req.body;
   console.log(attendanceData, user, date_day)
-  // if (!attendanceData || !user || !date_day) {
-  //   return res.status(400).json({ message: "Missing attendance data, user, or date" });
-  // }
+  if (!attendanceData || !user || !date_day) {
+    return res.status(400).json({ message: "Missing attendance data, user, or date" });
+  }
 
   console.log("📌 Attendance of User:", user);
   console.log("📌 Attendance Data from Client:", attendanceData);
@@ -180,6 +180,11 @@ app.post("/show", (req, res) => {
 
     let parts = item.split("-");
     let status = parts[1];     
+    if(status == "L}")
+    {
+      console.log("In else")
+      status = parts[2];
+    }
     let lastword = parts[2];    
 
     console.log("Status:", status, "Code:", "'", code, "'", "Class:", lastword);
@@ -199,7 +204,7 @@ app.post("/show", (req, res) => {
     {
       table = "sub_bcaIII_213_L"
     }
-    else if(code === "IA")
+    else if(code === "I.A")
     {
       table = "sub_bcaIII_211"
     }
