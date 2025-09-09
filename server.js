@@ -11,7 +11,8 @@ import { execFile } from "child_process";
 import { stderr, stdout } from "process"
 import { use } from "react"
 import session from "express-session";
-
+import { time } from "console"
+import fs from "fs";
 const PORT = 1900;
 
 const app = express();
@@ -57,7 +58,6 @@ app.get("/", (req, res) => {
 })
 
 // let user;
-
 app.post("/login", (req, res) => {
   const user_id = req.body.user_id;
   const password = req.body.password;
@@ -76,9 +76,7 @@ app.post("/login", (req, res) => {
     if(results.length>0)
     {
       console.log("Login Done as : " , user_id);
-      // res.session.user = user_id;
       req.session.user = user_id;
-      // console.log("This is user who in login is : ", user);
       res.redirect(`/frontend/main.html?user_id=${user_id}`);
     }
     else
@@ -90,10 +88,10 @@ app.post("/login", (req, res) => {
 // console.log("This is user who loged is : ", user);
 let newuserData = {};
 app.post("/new_user", (req, res) => {
-  const { name, user_email: email, user_id, password, phone } = req.body;
-  console.log(name, email, password, phone, user_id);
+  const { name, email, id, course, year, sem, password, phone } = req.body;
+  console.log(name, email, password , course, year, sem, phone, id);
 
-  if (!name || !email || !password || !phone || !user_id) {
+  if (!name || !email || !password || !course || !year || !sem || !phone || !id) {
     return res.status(400).json({ message: "Failed" });
   }
   execFile("python", ["backend/send_email.py", email], (error, stdout, stderr) => {
@@ -102,7 +100,7 @@ app.post("/new_user", (req, res) => {
     const out = JSON.parse(stdout);
     const pythonOtp = out.otp;
     console.log("OTP: in user " , pythonOtp);
-    newuserData = {name, email, user_id, password, phone, pythonOtp};
+    newuserData = {name, course, year, sem, email, id, password, phone, pythonOtp};
     console.log(pythonOtp);
     res.sendFile(path.join(__dirname, "/frontend/verify.html"));
   });
@@ -112,7 +110,7 @@ app.post("/verify_otp", (req, res) => {
   const otpp = req.body.otp;
   let otp = parseInt(otpp);
   console.log("OTP from html: ", otp);
-  console.log("In user : " ,newuserData.pythonOtp);
+  // console.log("In user : " ,newuserData.pythonOtp);
   if(!newuserData || !otp)
   {
     res.status(322).json({message: "Failed in Verrify taking output"});
@@ -123,8 +121,28 @@ app.post("/verify_otp", (req, res) => {
     return res.status(400).json({ message: "OTP does not match" });
   }
 
-  const query = "INSERT INTO USERS (user_id , password, full_name, email, phone) values ( ? , ?, ?, ? ,?);";
-  pool.execute(query, [newuserData.user_id, newuserData.password, newuserData.name, newuserData.email, newuserData.phone], (err, results) => {
+  const query1 = "SELECT count(*) as totals FROM users WHERE course = ? and year = ? and sem = ?;";
+  pool.execute(query1, [newuserData.course, newuserData.year, newuserData.sem], (err,results) => {
+    if(err)
+    {
+      console.log("Error occured in addign new user: ", err);
+      return res.status(500).json({message: "Database Failed"});
+    }
+    const total = results[0].totals;
+    if(total==0)
+    {
+      return res.sendFile(path.join(__dirname, "/frontend/add_table.html"));
+    }
+    else
+    {
+      return res.redirect("/adding");
+    }
+  })
+});
+app.get("/adding", (req,res)=>{
+  console.log("In adding");
+  const query = "INSERT INTO USERS (user_id , course, year, sem, password, full_name, email, phone) values ( ? , ?, ?, ?, ?, ?, ? ,?);";
+  pool.execute(query, [newuserData.id, newuserData.course, newuserData.year, newuserData.sem , newuserData.password, newuserData.name, newuserData.email, newuserData.phone], (err, results) => {
     if (err) {
       console.log("Error occurred in adding new user:", err);
       return res.status(500).json({ message: "Database error" });
@@ -136,8 +154,7 @@ app.post("/verify_otp", (req, res) => {
       return res.status(400).json({ message: "Failed to insert user" });
     }
   });
-});
-
+})
 
 const subjects = {
   "ITSM-L": "sub_bcaIII_214_L",
@@ -155,7 +172,6 @@ app.post("/show", (req, res) => {
   if (!attendanceData || !user || !date_day) {
     return res.status(400).json({ message: "Missing attendance data, user, or date" });
   }
-
   console.log("📌 Attendance of User:", user);
   console.log("📌 Attendance Data from Client:", attendanceData);
   console.log("Attendecne at [0]", attendanceData[0]);

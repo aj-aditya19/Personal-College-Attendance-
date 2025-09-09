@@ -55,11 +55,10 @@ async function loadTimetable() {
   const user_id = document.querySelector("#user-display").innerHTML;
   console.log(user_id);
   const today = new Date();
-  const dayName = today.toLocaleDateString("en-US", { weekday: "long" }).toLowerCase();
+  let dayName = today.toLocaleDateString("en-US", { weekday: "long" }).toLowerCase();
 
   document.getElementById("date-container").innerText =
     today.toLocaleDateString("en-IN", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
-
   const todaySchedule = timetable[dayName];
   const tbody = document.getElementById("attendance-body");
   tbody.innerHTML = "";
