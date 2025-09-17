@@ -29,6 +29,7 @@ async function loadAttendance() {
     total_show.querySelector(".total_present").innerText = total_present;
     total_show.querySelector(".total_absent").innerText = total_absent;
     total_percent = (total_present*100)/total_classes;
+    total_percent = parseFloat(total_percent.toFixed(2));
     total_show.querySelector(".total_percent").innerText = total_percent + "%";
   } catch (err) {
     console.error("Error fetching attendance:", err);

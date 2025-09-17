@@ -86,37 +86,6 @@
 
   ],
 
-  "saturday": [
-    
-    { "Start_Time": "9:30 am", "End_Time": "10:10 am", "subject": "", "sub_code": "", "faculty": "", "class": "class1" },
-
-    { "Start_Time": "10:15 am", "End_Time": "11:05 am", "subject": "Introduction to Algorithms{I.A}", "sub_code": "211", "faculty": "Ms. Riya Kukreti{RK}", "class": "class2" },
-
-    { "Start_Time": "11:10 am", "End_Time": "12:00 pm", "subject": "MOOC Course{MOOC}", "sub_code": "215", "faculty": "Mr. Nishant Mathur{NM}", "class": "class3" },
-
-    { "Start_Time": "12:05 pm", "End_Time": "12:55 pm", "subject": "", "sub_code": "", "faculty": "", "class": "class4" },
-
-    { "Start_Time": "12:55 pm", "End_Time": "1:45 pm", "subject": "Recess", "sub_code": "", "faculty": "", "class": "class5" },
-
-    { "Start_Time": "1:45 pm", "End_Time": "2:35 pm", "subject": "Computer Networks Lab {CN-L}", "sub_code": "213", "faculty": "Ms. Riya Kukreti{RK}", "class": "class6" },
-
-    { "Start_Time": "2:45 pm", "End_Time": "3:30 pm", "subject": "Computer Networks Lab {CN-L}", "sub_code": "213", "faculty": "Ms. Riya Kukreti{RK}", "class": "class7" }
-
-
-  ],
-  "sunday": [
-        { "Start_Time": "9:30 am", "End_Time": "10:10 am", "subject": "Information Technology Service Management {ITSM}", "sub_code": "214", "faculty": "Mr. Virendra Singh Rana{VSR}", "class": "class1" },
-
-    { "Start_Time": "10:15 am", "End_Time": "11:05 am", "subject": "Computer Networks{CN}", "sub_code": "213", "faculty": "Ms. Riya Kukreti{RK}", "class": "class2" },
-
-    { "Start_Time": "11:10 am", "End_Time": "12:00 pm", "subject": "CRT", "sub_code": "217", "faculty": "Ms. Arti{Arti}", "class": "class3" },
-
-    { "Start_Time": "12:05 pm", "End_Time": "12:55 pm", "subject": "Computer Networks{CN}", "sub_code": "213", "faculty": "Ms. Riya Kukreti{RK}", "class": "class4" },
-
-    { "Start_Time": "12:55 pm", "End_Time": "1:45 pm", "subject": "Recess", "sub_code": "", "faculty": "", "class": "class5" },
-    
-    { "Start_Time": "1:45 pm", "End_Time": "2:35 pm", "subject": "", "sub_code": "", "faculty": "", "class": "class6" },
-
-    { "Start_Time": "2:45 pm", "End_Time": "3:30 pm", "subject": "", "sub_code": "", "faculty": "", "class": "class7" }
-  ]
+  "saturday": [],
+  "sunday": []
 }
